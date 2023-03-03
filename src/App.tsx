@@ -6,7 +6,6 @@ const LandingPage = lazy(() => import("./sites/LandingPage"));
 const App: React.FC = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <p>test</p>
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
