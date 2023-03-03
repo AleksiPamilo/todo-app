@@ -32,19 +32,15 @@ const Todo: React.FC<TodoProps> = ({ todo, todos, setTodos }) => {
     }
 
     return (
-        <div key={todo.id} className={`flex gap-4 items-center border hover:shadow-glow-5 relative `}>
-            <div className="border-b-4 absolute z-10 w-full rotate-[9deg] brightness-100" hidden={!todo.completed} />
-            <div className={`flex gap-4 items-center p-4 ${todo.completed && "brightness-50"}`}>
-                <input type="checkbox" className="w-5 h-5 cursor-pointer" checked={todo.completed} onClick={() => handleCompletion(todo.id)} />
-                <input disabled={!!!editable} className={inputStyle} value={title} onChange={(e) => setTitle(String(e.target.value))} />
-                <p>{todo.description}</p>
-
-                <div>
-                    <button disabled={todo.completed} onClick={() => setEditable(!editable)} className="py-2 px-3 border hover:shadow-glow-2 disabled:hover:shadow-none disabled:cursor-not-allowed">{
-                        editable ? "Save" : "Edit"
-                    }</button>
-                    <button disabled={todo.completed} onClick={() => deleteTodo(todo.id)} className="py-2 px-3 border hover:shadow-glow-2 disabled:hover:shadow-none disabled:cursor-not-allowed">Delete</button>
-                </div>
+        <div key={todo.id} className={`flex gap-4 p-4 items-center border hover:shadow-glow-5 ${todo.completed && "brightness-50"}`}>
+            <input type="checkbox" className="w-5 h-5 cursor-pointer" checked={todo.completed} onClick={() => handleCompletion(todo.id)} />
+            <input disabled={!!!editable} className={inputStyle} value={title} onChange={(e) => setTitle(String(e.target.value))} />
+            <p>{todo.description}</p>
+            <div>
+                <button disabled={todo.completed} onClick={() => setEditable(!editable)} className="py-2 px-3 border hover:shadow-glow-2 disabled:hover:shadow-none disabled:cursor-not-allowed">{
+                    editable ? "Save" : "Edit"
+                }</button>
+                <button onClick={() => deleteTodo(todo.id)} className="py-2 px-3 brightness-100 border hover:shadow-glow-2">Delete</button>
             </div>
         </div>
     )
